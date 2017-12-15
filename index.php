@@ -9,38 +9,34 @@
         <button onclick="Stop()">Stop</button>
         <br>
         <br>
-        
-        
-  
-        
-        
+           <canvas id="canvas" width="400" height="200"></canvas>
         <script>
-            
-//                  for(x=0;x<500;x++){
-//            <canvas id="canvas" width="400" height="200"></canvas>
-//        }
+
+
             var w;
-            function Start(){
+            function Start() {
                 w = new Worker("worker.js");
-                w.onmessage = function(jojo){
-                    document.getElementById("result").innerHTML = jojo.data;
+                w.onmessage = function (jojo) { //jojo komt van de worker.js. Afkomstig van myJSON
+                    
+                    var myOj = JSON.parse(jojo.data);
+                    document.getElementById("result").innerHTML = myOj.city;
                 };
             }
-            
-            function Stop(){
+
+            function Stop() {
                 w.terminate();
                 w = undefined;
             }
             var c = document.getElementById("canvas");
             var ctx = c.getContext("2d");
-            
-            var grd = ctx.createLinearGradient(0,0,400,0);
-            grd.addColorStop(0,"blue");
-            grd.addColorStop(0.5,"red");
-            grd.addColorStop(1,"yellow");
-            
+
+            var grd = ctx.createLinearGradient(0, 0, 400, 0);
+            grd.addColorStop(0, "blue");
+            grd.addColorStop(0.5, "red");
+            grd.addColorStop(1, "yellow");
+
             ctx.fillStyle = grd;
-            ctx.fillRect(0,0,400,200);
-            </script>
+            ctx.fillRect(0, 0, 400, 200);
+        </script>
     </body>
 </html>
