@@ -16,7 +16,7 @@
             var w;
             function Start() {
                 w = new Worker("worker.js");
-                w.onmessage = function (jojo) { //jojo komt van de worker.js. Afkomstig van myJSON
+                w.onmessage = function (jojo) { //jojo komt van de worker.js. Afkomstig van myJSON 
                     
                     var myOj = JSON.parse(jojo.data);
                     document.getElementById("result").innerHTML = myOj.city;
